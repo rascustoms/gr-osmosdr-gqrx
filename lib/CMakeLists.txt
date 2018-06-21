@@ -43,6 +43,8 @@ GR_OSMOSDR_APPEND_SRCS(
     time_spec.cc
 )
 
+list(APPEND Boost_LIBRARIES pthread)
+
 GR_OSMOSDR_APPEND_LIBS(
     ${Boost_LIBRARIES}
     ${GNURADIO_ALL_LIBRARIES}
@@ -223,6 +225,14 @@ GR_REGISTER_COMPONENT("AIRSPY Receiver" ENABLE_AIRSPY LIBAIRSPY_FOUND)
 if(ENABLE_AIRSPY)
 GR_INCLUDE_SUBDIRECTORY(airspy)
 endif(ENABLE_AIRSPY)
+
+########################################################################
+# Setup SPYSERVER component
+########################################################################
+GR_REGISTER_COMPONENT("SpyServer Receiver" ENABLE_SPYSERVER)
+if(ENABLE_SPYSERVER)
+GR_INCLUDE_SUBDIRECTORY(spyserver)
+endif(ENABLE_SPYSERVER)
 
 ########################################################################
 # Setup SoapySDR component
